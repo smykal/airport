@@ -18,6 +18,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "PASSENGERS")
+@SecondaryTable(name = "ADDRESSES")
 public class Passenger {
     @Id
     @Column(name = "ID")
@@ -25,6 +26,18 @@ public class Passenger {
 
     @Column(name = "NAME")
     private String name;
+
+    @Column(name = "STREET", table = "ADDRESSES", columnDefinition = "varchar(25) not null")
+    private String street;
+
+    @Column(name = "NUMBER", table = "ADDRESSES", columnDefinition = "varchar(10) not null")
+    private String number;
+
+    @Column(name = "ZIPCODE", table = "ADDRESSES", columnDefinition = "varchar(10) not null")
+    private String zipcode;
+
+    @Column(name = "CITY", table = "ADDRESSES", columnDefinition = "varchar(25) not null")
+    private String city;
 
     @ManyToOne
     @JoinColumn(name = "AIRPORT_ID")
