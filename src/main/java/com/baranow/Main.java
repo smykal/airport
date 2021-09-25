@@ -17,11 +17,15 @@ public class Main {
 
         entityManager.getTransaction().begin();
 
-        Passenger asia = new Passenger(1,"Bodzow");
+        Passenger asia = new Passenger(2,"Bodzow");
         asia.setCity("Cracow");
         asia.setStreet("Forum");
         asia.setNumber("2323");
         asia.setZipcode("23-123");
+
+        asia.setAreaCode("1232");
+        asia.setPrefix("+23");
+        asia.setLineNumber("123456789");
 
         entityManager.persist(asia);
 

@@ -18,7 +18,16 @@ import java.util.List;
 
 @Entity
 @Table(name = "PASSENGERS")
-@SecondaryTable(name = "ADDRESSES")
+
+@SecondaryTables(
+        {
+                @SecondaryTable(name = "ADDRESSES",
+                        pkJoinColumns = @PrimaryKeyJoinColumn(name = "PASSENGER ID", referencedColumnName = "PASSENGER ID")),
+
+                @SecondaryTable(name = "PHONES",
+                        pkJoinColumns = @PrimaryKeyJoinColumn(name = "PASSENGER ID", referencedColumnName = "PASSENGER ID"))
+        }
+)
 public class Passenger {
     @Id
     @Column(name = "ID")
@@ -38,6 +47,15 @@ public class Passenger {
 
     @Column(name = "CITY", table = "ADDRESSES", columnDefinition = "varchar(25) not null")
     private String city;
+
+    @Column(name = "AREA_CODE", table = "PHONES", columnDefinition = "varchar(5) not null")
+    private String areaCode;
+
+    @Column(name = "PREFIX", table = "PHONES", columnDefinition = "varchar(3) not null")
+    private String prefix;
+
+    @Column(name = "LINE_NUMBER", table = "PHONES", columnDefinition = "varchar(9) not null")
+    private String lineNumber;
 
     @ManyToOne
     @JoinColumn(name = "AIRPORT_ID")
